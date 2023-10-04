@@ -12,4 +12,11 @@ class AlbumRepository:
             item = Albums(row["title"], row["release_year"], row["artist_id"])
             albums.append(item)
         return albums
+    #get one album from database dependent on id
+
+    def find(self, id):
+        rows = self._connection.execute(f'SELECT * FROM albums WHERE id = {id}')
+        for row in rows:
+            item = Albums(row['title'], row['release_year'], row['artist_id'])
+        return item
 
